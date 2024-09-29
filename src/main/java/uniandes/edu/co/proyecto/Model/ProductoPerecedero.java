@@ -11,10 +11,11 @@ public class ProductoPerecedero extends Producto {
 
     private Date fechaVencimiento;
 
-    public ProductoPerecedero(String nombre, Double precioUnitarioVenta, String presentacion, Integer cantidadPresentacion,
-            String unidadMedida, Date fechaExpiracion, Date fechaVencimiento) {
+    public ProductoPerecedero(String nombre, Double precioUnitarioVenta, String presentacion,
+    Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, Categoria categoria,
+    EspecificacionEmpacado especificacionEmpacado, Date fechaVencimiento) {
                 super(nombre, precioUnitarioVenta, presentacion, cantidadPresentacion, 
-                unidadMedida, fechaExpiracion);
+                unidadMedida, fechaExpiracion, categoria, especificacionEmpacado);
                 this.fechaVencimiento = fechaVencimiento;
             }
 

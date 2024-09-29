@@ -12,11 +12,10 @@ public class EspecificacionEmpacado {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
-
+    private Long id;
     private Double volumen_CM3;
-
     private Double peso_Gr;
+
 
     public EspecificacionEmpacado(Double volumen_CM3, Double peso_Gr) {
         this.volumen_CM3 = volumen_CM3;
@@ -37,6 +36,10 @@ public class EspecificacionEmpacado {
 
     public void setPeso_Gr(Double peso_Gr) {
         this.peso_Gr = peso_Gr;
+    }
+
+    public Long getId() {
+        return id;
     }
 
 }

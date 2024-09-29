@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,22 +14,25 @@ public class Bodega {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
-
+    private Long id;
     private String nombre;
-
     private Double tamanio;
 
-    public Bodega(String nombre, Double tamanio) {
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal")
+    private Sucursal sucursal;
+
+    public Bodega(String nombre, Double tamanio, Sucursal sucursal) {
         this.nombre = nombre;
         this.tamanio = tamanio;
+        this.sucursal = sucursal;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
