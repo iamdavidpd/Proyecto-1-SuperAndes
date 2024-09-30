@@ -1,22 +1,36 @@
 package uniandes.edu.co.proyecto.Model;
 
+import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "InfoExtraBodega")
-public class InfoExtraBodega {
+@Embeddable
+public class InfoExtraBodegaPK implements Serializable {
+
+    @ManyToOne
+    @JoinColumn(name = "codBarras", referencedColumnName = "CodigoBarras_Producto")
+    private Producto codBarras;
+
+    @OneToOne
+    @JoinColumn(name = "idBodega", referencedColumnName = "Id_bodega")
+    private Bodega idBodega;
 
     private Integer totalExistencia;
-
     private Double costoPromedio;
-
     private Double capacidadAlmacenamiento;
-
     private Double nivelMinimoReorden;
 
-    public InfoExtraBodega(Integer totalExistencia, Double costoPromedio, Double capacidadAlmacenamiento,
-            Double nivelMinimoReorden) {
+    public InfoExtraBodegaPK(Producto codBarras, Bodega idBodega, Integer totalExistencia, Double costoPromedio,
+            Double capacidadAlmacenamiento, Double nivelMinimoReorden) {
+        this.codBarras = codBarras;
+        this.idBodega = idBodega;
         this.totalExistencia = totalExistencia;
         this.costoPromedio = costoPromedio;
         this.capacidadAlmacenamiento = capacidadAlmacenamiento;
@@ -53,6 +67,22 @@ public class InfoExtraBodega {
 
     public void setNivelMinimoReorden(Double nivelMinimoReorden) {
         this.nivelMinimoReorden = nivelMinimoReorden;
+    }
+
+    public Producto getCodBarras() {
+        return codBarras;
+    }
+
+    public void setCodBarras(Producto codBarras) {
+        this.codBarras = codBarras;
+    }
+
+    public Bodega getIdBodega() {
+        return idBodega;
+    }
+
+    public void setIdBodega(Bodega idBodega) {
+        this.idBodega = idBodega;
     }
 
 }
