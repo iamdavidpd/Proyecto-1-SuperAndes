@@ -7,8 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "DetalleCostosBodega")
-public class DetalleCostosBodega {
+@Table(name = "DetalleCostoBodega")
+public class DetalleCostoBodega {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +17,12 @@ public class DetalleCostosBodega {
     private Double costoUnitarioBodega;
     private Integer cantidadExistencias;
 
-    public DetalleCostosBodega(Double costoUnitarioBodega, Integer cantidadExistencias) {
+    public DetalleCostoBodega(Double costoUnitarioBodega, Integer cantidadExistencias) {
         this.costoUnitarioBodega = costoUnitarioBodega;
         this.cantidadExistencias = cantidadExistencias;
     }
 
-    public DetalleCostosBodega() {;
+    public DetalleCostoBodega() {;
     }
 
     public Double getCostoUnitarioBodega() {

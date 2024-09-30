@@ -1,6 +1,8 @@
 package uniandes.edu.co.proyecto.Model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -9,12 +11,12 @@ import jakarta.persistence.Table;
 public class Ciudad {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long codigo;
 
     private String nombre;
 
-    public Ciudad(Long codigo, String nombre) {
-        this.codigo = codigo;
+    public Ciudad(String nombre) {
         this.nombre = nombre;
     }
 

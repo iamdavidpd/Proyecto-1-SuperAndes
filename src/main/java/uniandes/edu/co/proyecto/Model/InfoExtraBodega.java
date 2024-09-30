@@ -11,9 +11,9 @@ public class InfoExtraBodega {
     @EmbeddedId
     private InfoExtraBodegaPK pk;
 
-    public InfoExtraBodega(Producto codBarras, Bodega idBodega, Integer totalExistencia, Double costoPromedio,
+    public InfoExtraBodega(Producto codBarras, DetalleCostoBodega idDetalleBodega, Integer totalExistencia, Double costoPromedio,
     Double capacidadAlmacenamiento, Double nivelMinimoReorden){
-        this.pk = new InfoExtraBodegaPK(codBarras, idBodega, totalExistencia, costoPromedio, capacidadAlmacenamiento, nivelMinimoReorden);
+        this.pk = new InfoExtraBodegaPK(codBarras, idDetalleBodega, totalExistencia, costoPromedio, capacidadAlmacenamiento, nivelMinimoReorden);
     }
 
     public InfoExtraBodega() {;
