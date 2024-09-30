@@ -25,7 +25,7 @@ public interface InfoExtraBodegaRepository extends JpaRepository<InfoExtraBodega
             nativeQuery = true)
     void insertInfoExtraBodega(@Param("codBar") Long codBar, @Param("idBod") Long idBod, @Param("existencia") Integer existencia,
                 @Param("costo") Double costo, @Param("capacidad") Double capacidad, @Param("reorden") Double reorden,
-                 @Param("idCostoBodega") Long idCostoBodega);
+                 @Param("idCostoBodega") Double idCostoBodega);
     
     @Modifying
     @Transactional
