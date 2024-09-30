@@ -12,4 +12,26 @@ import uniandes.edu.co.proyecto.Model.Proveedor;
 
 public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
 
+    @Query(value = "SELECT * FROM Proveedor", nativeQuery = true)
+    Collection<Proveedor> getAllProveedores();
+
+    @Query(value = "SELECT * FROM Proveedor WHERE Nit = :nit", nativeQuery = true)
+    Proveedor getProveedor(@Param("nit") Long nit);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO Proveedor (Nit, Nombre, Direccion, NombreContacto, TelefonoContacto) VALUES (:nit, :nombre, :direccion, :contacto, :telefono)", nativeQuery = true)
+    void insertProveedor(@Param("nit") Long nit, @Param("nombre") String nombre, @Param("direccion") String direccion,
+                        @Param("contacto") String contacto, @Param("telefono") Long telefono);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Proveedor SET Nombre = :nombre, Direccion = :direccion, NombreContacto = :contacto, TelefonoContacto = :telefono WHERE Nit = :nit", nativeQuery = true)
+    void updateProveedor(@Param("nit") Long nit, @Param("nombre") String nombre, @Param("direccion") String direccion,
+    @Param("contacto") String contacto, @Param("telefono") Long telefono);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Proveedor WHERE Nit = :nit", nativeQuery = true)
+    void deleteProveedor(@Param("nit") Long nit);
 }

@@ -25,12 +25,12 @@ public class Producto {
     private Date fechaExpiracion;
 
     @ManyToOne
-    @JoinColumn(name = "codigo_categoria", nullable = false)
-    private Categoria categoria;
+    @JoinColumn(name = "codigo_categoria", referencedColumnName = "Codigo_Categoria")
+    private Categoria codigo_categoria;
 
     @ManyToOne
-    @JoinColumn(name = "id_especificacionEmpacado", nullable = false)
-    private EspecificacionEmpacado especificacionEmpacado;
+    @JoinColumn(name = "id_especificacionEmpacado", referencedColumnName = "Id_especificacionEmpacado")
+    private EspecificacionEmpacado id_especificacionEmpacado;
 
     public Producto(String nombre, Double precioUnitarioVenta, String presentacion,
             Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, Categoria categoria,
@@ -41,8 +41,8 @@ public class Producto {
         this.cantidadPresentacion = cantidadPresentacion;
         this.unidadMedida = unidadMedida;
         this.fechaExpiracion = fechaExpiracion;
-        this.categoria = categoria;
-        this.especificacionEmpacado = especificacionEmpacado;
+        this.codigo_categoria = categoria;
+        this.id_especificacionEmpacado = especificacionEmpacado;
     }
 
     public Producto() {;
@@ -104,19 +104,19 @@ public class Producto {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public Categoria getCodigo_categoria() {
+        return codigo_categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setCodigo_categoria(Categoria categoria) {
+        this.codigo_categoria = categoria;
     }
 
-    public EspecificacionEmpacado getEspecificacionEmpacado() {
-        return especificacionEmpacado;
+    public EspecificacionEmpacado getId_EspecificacionEmpacado() {
+        return id_especificacionEmpacado;
     }
 
-    public void setEspecificacionEmpacado(EspecificacionEmpacado especificacionEmpacado) {
-        this.especificacionEmpacado = especificacionEmpacado;
+    public void setId_EspecificacionEmpacado(EspecificacionEmpacado especificacionEmpacado) {
+        this.id_especificacionEmpacado = especificacionEmpacado;
     }
 }
