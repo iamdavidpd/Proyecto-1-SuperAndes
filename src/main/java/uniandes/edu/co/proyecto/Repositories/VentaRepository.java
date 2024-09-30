@@ -15,7 +15,7 @@ import uniandes.edu.co.proyecto.Model.Venta;
 public interface VentaRepository extends JpaRepository<Venta, Long> {
 
     @Query(value = "SELECT * FROM Venta", nativeQuery = true)
-    Collection<Categoria> getAllVentas();
+    Collection<Venta> getAllVentas();
 
     @Query(value = "SELECT * FROM Venta WHERE Id = :id", nativeQuery = true)
     Categoria getVenta(@Param("id") Long id);

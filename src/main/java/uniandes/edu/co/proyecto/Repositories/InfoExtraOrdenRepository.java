@@ -14,7 +14,7 @@ import uniandes.edu.co.proyecto.Model.InfoExtraOrden;
 public interface InfoExtraOrdenRepository extends JpaRepository<InfoExtraOrden, InfoExtraOrdenPK> {
 
     @Query(value = "SELECT * FROM InfoExtraOrden", nativeQuery = true)
-    Collection<InfoExtraOrden> getAllInfExtraOrden();
+    Collection<InfoExtraOrden> getAllInfoExtraOrden();
 
     @Query(value = "SELECT * FROM InfoExtraOrden WHERE CodigoBarras_Producto = :codBar AND Id_OrdenCompra = :idOrdCom", nativeQuery = true)
     InfoExtraOrden getInfoExtraOrden(@Param("codBar") Long codBar, @Param("idOrdCom") Long idOrdCom);
