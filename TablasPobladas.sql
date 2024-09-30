@@ -16,11 +16,11 @@ INSERT INTO DetalleCostoBodega (Id, CostoUnitarioBodega, CantidadExistencias) VA
 INSERT INTO DetalleCostoBodega (Id, CostoUnitarioBodega, CantidadExistencias) VALUES (4, 250.00, 30);
 INSERT INTO DetalleCostoBodega (Id, CostoUnitarioBodega, CantidadExistencias) VALUES (5, 300.25, 20);
 
-INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, CantidadExistencias) VALUES (1, 1000, 200);
-INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, CantidadExistencias) VALUES (2, 1500, 150);
-INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, CantidadExistencias) VALUES (3, 2000, 100);
-INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, CantidadExistencias) VALUES (4, 2500, 50);
-INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, CantidadExistencias) VALUES (5, 3000, 25);
+INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, Peso_Gr) VALUES (1, 1000, 200);
+INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, Peso_Gr) VALUES (2, 1500, 150);
+INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, Peso_Gr) VALUES (3, 2000, 100);
+INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, Peso_Gr) VALUES (4, 2500, 50);
+INSERT INTO EspecificacionEmpacado (Id, Volumen_cm3, Peso_Gr) VALUES (5, 3000, 25);
 
 INSERT INTO InfoExtraBodega (CodigoBarras_Producto, Id_Bodega, TotalExistencia, CostoPromedio, CapacidadAlmacenamiento, NivelMinimoReOrden, Id_detalleCostoBodega) VALUES (1001, 1, 150, 1.30, 500, 50, 1);
 INSERT INTO InfoExtraBodega (CodigoBarras_Producto, Id_Bodega, TotalExistencia, CostoPromedio, CapacidadAlmacenamiento, NivelMinimoReOrden, Id_detalleCostoBodega) VALUES (1002, 2, 100, 14.50, 300, 30, 2);
@@ -40,11 +40,11 @@ INSERT INTO InfoExtraProveedor (Nit_Proveedor, Id_OrdenCompra) VALUES ('34567890
 INSERT INTO InfoExtraProveedor (Nit_Proveedor, Id_OrdenCompra) VALUES ('45678901234', 4);
 INSERT INTO InfoExtraProveedor (Nit_Proveedor, Id_OrdenCompra) VALUES ('56789012345', 5);
 
-INSERT INTO InfoExtraVenta (Id_Venta, CodigoBarras_Producto, Cantidad, PrecioUnitario) VALUES (1, 1001, 5, 1.50);
-INSERT INTO InfoExtraVenta (Id_Venta, CodigoBarras_Producto, Cantidad, PrecioUnitario) VALUES (2, 1002, 2, 15.00);
-INSERT INTO InfoExtraVenta (Id_Venta, CodigoBarras_Producto, Cantidad, PrecioUnitario) VALUES (3, 1003, 1, 500.00);
-INSERT INTO InfoExtraVenta (Id_Venta, CodigoBarras_Producto, Cantidad, PrecioUnitario) VALUES (4, 1004, 1, 300.00);
-INSERT INTO InfoExtraVenta (Id_Venta, CodigoBarras_Producto, Cantidad, PrecioUnitario) VALUES (5, 1005, 3, 20.00);
+INSERT INTO InfoExtraVenta (CodigoBarras_Producto, Id_Venta, Cantidad, PrecioUnitarioVenta) VALUES (1001, 1, 5, 1.50);
+INSERT INTO InfoExtraVenta (CodigoBarras_Producto, Id_Venta, Cantidad, PrecioUnitarioVenta) VALUES (1002, 2, 2, 15.00);
+INSERT INTO InfoExtraVenta (CodigoBarras_Producto, Id_Venta, Cantidad, PrecioUnitarioVenta) VALUES (1003, 3, 1, 500.00);
+INSERT INTO InfoExtraVenta (CodigoBarras_Producto, Id_Venta, Cantidad, PrecioUnitarioVenta) VALUES (1004, 4, 1, 300.00);
+INSERT INTO InfoExtraVenta (CodigoBarras_Producto, Id_Venta, Cantidad, PrecioUnitarioVenta) VALUES (1005, 5, 3, 20.00);
 
 INSERT INTO OrdenCompra (Id, FechaCreacion, Estado, FechaEntrega, Nit_Proveedor, Id_Sucursal) VALUES (1, TO_DATE('2024-01-01', 'YYYY-MM-DD'), 'vigente', TO_DATE('2024-01-15', 'YYYY-MM-DD'), '12345678901', 1);
 INSERT INTO OrdenCompra (Id, FechaCreacion, Estado, FechaEntrega, Nit_Proveedor, Id_Sucursal) VALUES (2, TO_DATE('2024-01-02', 'YYYY-MM-DD'), 'vigente', TO_DATE('2024-01-16', 'YYYY-MM-DD'), '23456789012', 2);

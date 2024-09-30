@@ -75,7 +75,7 @@ Id_EspecificacionEmpacado NUMBER
 CREATE TABLE EspecificacionEmpacado(
 Id NUMBER PRIMARY KEY,
 Volumen_cm3 NUMBER NOT NULL,
-CantidadExistencias NUMBER NOT NULL
+Peso_Gr NUMBER NOT NULL
 );
 CREATE TABLE InfoExtraOrden(
 CodigoBarras_Producto NUMBER,
@@ -111,11 +111,11 @@ Id_Venta NUMBER,
 Cantidad NUMBER NOT NULL,
 PrecioUnitarioVenta NUMBER NOT NULL
 );
-CREATE TABLE InfoExtraProveedor(
-Nit_Proveedor VARCHAR2(11), 
-CodigoBarras_Producto NUMBER
+CREATE TABLE InfoExtraProveedor (
+    Nit_Proveedor VARCHAR2(11), 
+    CodigoBarras_Producto NUMBER,
+    CONSTRAINT unique_proveedor_producto UNIQUE (Nit_Proveedor, CodigoBarras_Producto)
 );
-
 ALTER TABLE Sucursal 
 ADD CONSTRAINT FK_codigo_ciudad 
 FOREIGN KEY (Codigo_Ciudad) REFERENCES Ciudad(Codigo); 
