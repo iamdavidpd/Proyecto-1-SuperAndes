@@ -19,4 +19,12 @@ public class InfoExtraOrden {
     public InfoExtraOrden() { ;
     }
 
+    public InfoExtraOrdenPK getPk() {
+        return pk;
+    }
+
+    public void setPk(InfoExtraOrdenPK pk) {
+        this.pk = pk;
+    }
+
 }
