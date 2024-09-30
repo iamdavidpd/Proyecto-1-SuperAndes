@@ -15,18 +15,22 @@ public class InfoExtraBodegaPK implements Serializable {
     private Producto codBarras;
 
     @OneToOne
-    @JoinColumn(name = "idDetalleBodega", referencedColumnName = "Id_bodega")
-    private DetalleCostoBodega idDetalleBodega;
+    @JoinColumn(name = "idBodega", referencedColumnName = "Id_bodega")
+    private Bodega idBodega;
+
+    @OneToOne
+    @JoinColumn(name = "idCostoBodega", referencedColumnName = "Id_detalleCostoBodega")
+    private DetalleCostoBodega idCostobodega;
 
     private Integer totalExistencia;
     private Double costoPromedio;
     private Double capacidadAlmacenamiento;
     private Double nivelMinimoReorden;
 
-    public InfoExtraBodegaPK(Producto codBarras, DetalleCostoBodega idDetalleBodega, Integer totalExistencia, Double costoPromedio,
+    public InfoExtraBodegaPK(Producto codBarras, Bodega idBodega, DetalleCostoBodega idCostobodega, Integer totalExistencia, Double costoPromedio,
             Double capacidadAlmacenamiento, Double nivelMinimoReorden) {
         this.codBarras = codBarras;
-        this.idDetalleBodega = idDetalleBodega;
+        this.idBodega = idBodega;
         this.totalExistencia = totalExistencia;
         this.costoPromedio = costoPromedio;
         this.capacidadAlmacenamiento = capacidadAlmacenamiento;
@@ -73,12 +77,12 @@ public class InfoExtraBodegaPK implements Serializable {
         this.codBarras = codBarras;
     }
 
-    public DetalleCostoBodega getIdBodega() {
-        return idDetalleBodega;
+    public Bodega getIdBodega() {
+        return idBodega;
     }
 
-    public void setIdBodega(DetalleCostoBodega idBodega) {
-        this.idDetalleBodega = idBodega;
+    public void setIdBodega(Bodega idBodega) {
+        this.idBodega = idBodega;
     }
 
 }
