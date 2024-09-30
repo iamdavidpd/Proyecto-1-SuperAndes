@@ -16,6 +16,9 @@ public class InfoExtraBodega {
         this.pk = new InfoExtraBodegaPK(codBarras, idBodega, totalExistencia, costoPromedio, capacidadAlmacenamiento, nivelMinimoReorden);
     }
 
+    public InfoExtraBodega() {;
+    }
+
     public InfoExtraBodegaPK getPk() {
         return pk;
     }

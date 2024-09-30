@@ -19,13 +19,16 @@ public class Bodega {
     private Double tamanio;
 
     @ManyToOne
-    @JoinColumn(name = "id_sucursal")
+    @JoinColumn(name = "id_sucursal", referencedColumnName = "Id_Sucursal")
     private Sucursal sucursal;
 
     public Bodega(String nombre, Double tamanio, Sucursal sucursal) {
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.sucursal = sucursal;
+    }
+
+    public Bodega() {;
     }
 
     public Long getId() {
@@ -50,5 +53,13 @@ public class Bodega {
 
     public void setTamanio(Double tamanio) {
         this.tamanio = tamanio;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 }

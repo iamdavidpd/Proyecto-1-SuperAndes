@@ -1,13 +1,9 @@
 package uniandes.edu.co.proyecto.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,25 +12,26 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer codigo;
+    private Long codigo;
+
     private String nombre;
     private String descripcion;
     private String caracteristicasAlmacenamiento;
-
-    @OneToMany(mappedBy = "Categoria")
-    private List<Producto> productos = new ArrayList<Producto>();
-
-    public Categoria(String nombre, String descripcion, String caracteristicasAlmacenamiento){
+    
+    public Categoria(String nombre, String descripcion, String caracteristicasAlmacenamiento) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.caracteristicasAlmacenamiento = caracteristicasAlmacenamiento;
     }
 
-    public Integer getCodigo() {
+    public Categoria() {;
+    }
+
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -62,11 +59,4 @@ public class Categoria {
         this.caracteristicasAlmacenamiento = caracteristicasAlmacenamiento;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
 }

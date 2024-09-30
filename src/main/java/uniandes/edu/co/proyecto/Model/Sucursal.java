@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,28 +14,35 @@ public class Sucursal {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String nombre;
-
     private Double tamanio;
-
     private String direccion;
-
     private Integer telefono;
 
-    public Sucursal(String nombre, Double tamanio, String direccion, Integer telefono) {
+    @ManyToOne
+    @JoinColumn(name = "codigo_Ciudad", referencedColumnName = "codigo_Ciudad")
+    private Ciudad codigo_Ciudad;
+
+    public Sucursal(Long id, String nombre, Double tamanio, String direccion, Integer telefono,
+            Ciudad codigo_Ciudad) {
+        this.id = id;
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.codigo_Ciudad = codigo_Ciudad;
     }
 
-    public Integer getId() {
+    public Sucursal() { ;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,5 +77,12 @@ public class Sucursal {
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
-    
+
+    public Ciudad getCodigo_Ciudad() {
+        return codigo_Ciudad;
+    }
+
+    public void setCodigo_Ciudad(Ciudad codigo_Ciudad) {
+        this.codigo_Ciudad = codigo_Ciudad;
+    }
 }

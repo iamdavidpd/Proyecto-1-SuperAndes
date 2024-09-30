@@ -15,6 +15,9 @@ public class InfoExtraVenta {
         this.pk = new InfoExtraVentaPK(codigoBarras, idVenta, cantidad, precio);
     }
 
+    public InfoExtraVenta() {;
+    }
+
     public InfoExtraVentaPK getPk() {
         return pk;
     }

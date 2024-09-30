@@ -18,6 +18,8 @@ public class ProductoPerecedero extends Producto {
                 unidadMedida, fechaExpiracion, categoria, especificacionEmpacado);
                 this.fechaVencimiento = fechaVencimiento;
             }
+    
+    public ProductoPerecedero(){;}
 
     public Date getFechaVencimiento() {
         return fechaVencimiento;

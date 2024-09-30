@@ -1,15 +1,11 @@
 package uniandes.edu.co.proyecto.Model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -19,7 +15,8 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer codigoBarras;
+    private Long codigoBarras;
+
     private String nombre;
     private Double precioUnitarioVenta;
     private String presentacion;
@@ -35,12 +32,6 @@ public class Producto {
     @JoinColumn(name = "id_especificacionEmpacado", nullable = false)
     private EspecificacionEmpacado especificacionEmpacado;
 
-    @ManyToMany
-    private List<Venta> ventas = new ArrayList<Venta>();
-
-    @ManyToMany
-    private List<OrdenCompra> ordenesCompra = new ArrayList<OrdenCompra>();
-
     public Producto(String nombre, Double precioUnitarioVenta, String presentacion,
             Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, Categoria categoria,
             EspecificacionEmpacado especificacionEmpacado) {
@@ -54,11 +45,14 @@ public class Producto {
         this.especificacionEmpacado = especificacionEmpacado;
     }
 
-    public Integer getCodigoBarras() {
+    public Producto() {;
+    }
+    
+    public Long getCodigoBarras() {
         return codigoBarras;
     }
 
-    public void setCodigoBarras(Integer codigoBarras) {
+    public void setCodigoBarras(Long codigoBarras) {
         this.codigoBarras = codigoBarras;
     }
 
@@ -125,13 +119,4 @@ public class Producto {
     public void setEspecificacionEmpacado(EspecificacionEmpacado especificacionEmpacado) {
         this.especificacionEmpacado = especificacionEmpacado;
     }
-
-    public List<Venta> getVentas() {
-        return ventas;
-    }
-
-    public void setVentas(List<Venta> ventas) {
-        this.ventas = ventas;
-    }
-
 }

@@ -18,6 +18,9 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
+    public Ciudad() {;
+    }
+
     public Long getCodigo() {
         return codigo;
     }

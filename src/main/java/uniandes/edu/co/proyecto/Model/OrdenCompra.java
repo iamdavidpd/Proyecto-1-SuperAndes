@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,25 +17,38 @@ public class OrdenCompra {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private Date fechaCreacion;
-
     private String estado;
-
     private Date fechaEntrega;
 
-    public OrdenCompra(Date fechaCreacion, String estado, Date fechaEntrega) {
+    @ManyToOne
+    @JoinColumn(name = "Nit_proveedor", referencedColumnName = "Nit_proveedor")
+    private Proveedor Nit_proveedor;
+
+    @OneToOne
+    @JoinColumn(name = "Id_Sucursal", referencedColumnName = "Id_Sucursal")
+    private Sucursal Id_Sucursal;
+
+    public OrdenCompra(Long id, Date fechaCreacion, String estado, Date fechaEntrega, Proveedor nit_proveedor,
+            Sucursal id_Sucursal) {
+        this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
         this.fechaEntrega = fechaEntrega;
+        Nit_proveedor = nit_proveedor;
+        Id_Sucursal = id_Sucursal;
     }
 
-    public Integer getId() {
+    public OrdenCompra() {;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

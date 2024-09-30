@@ -18,6 +18,9 @@ public class Cliente {
         this.nombre = nombre;
     }
 
+    public Cliente() {;
+    }
+
     public Long getCedula() {
         return cedula;
     }
