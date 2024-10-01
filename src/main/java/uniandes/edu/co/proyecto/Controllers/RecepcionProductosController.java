@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uniandes.edu.co.proyecto.Model.RecepcionProductos;
 import uniandes.edu.co.proyecto.Repositories.RecepcionProductosRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -34,6 +35,16 @@ public class RecepcionProductosController {
         return new ResponseEntity<>("RecepcionProductos creado exitosamente", HttpStatus.CREATED);
         } catch(Exception e) {
             return new ResponseEntity<>("Error al crear el RecepcionProductos", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/RecepcionProductos/{id}/delete")
+    public ResponseEntity<String> recepcionProductosEliminar(@PathVariable("id") long id) {
+        try {
+            recepcionProductosRepository.deleteRecepcionProductos(id);
+            return new ResponseEntity<>("RecepcionProductos eliminado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al eliminar el RecepcionProductos", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

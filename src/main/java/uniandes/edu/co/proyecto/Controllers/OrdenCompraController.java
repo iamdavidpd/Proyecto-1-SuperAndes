@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,16 @@ public class OrdenCompraController {
         return new ResponseEntity<>("OrdenCompra creado exitosamente", HttpStatus.CREATED);
         } catch(Exception e) {
             return new ResponseEntity<>("Error al crear el OrdenCompra", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/OrdenesCompra/{id}/delete")
+    public ResponseEntity<String> ordenCompraEliminar(@PathVariable("id") long id) {
+        try {
+            ordenCompraRepository.deleteOrdenCompra(id);
+            return new ResponseEntity<>("ordenCompra eliminado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al eliminar el ordenCompra", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

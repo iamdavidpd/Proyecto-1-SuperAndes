@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,16 @@ public class InfoExtraOrdenController {
         return new ResponseEntity<>("InfoExtraOrden creado exitosamente", HttpStatus.CREATED);
         } catch(Exception e) {
             return new ResponseEntity<>("Error al crear el InfoExtraOrden", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/InfoExtraOrdenes/{id}/delete")
+    public ResponseEntity<String> infoExtraOrdenEliminar(@PathVariable("codBar") Long codBar, @PathVariable("ordCom") Long ordCom) {
+        try {
+            infoExtraOrdenRepository.deleteInfoExtraOrden(codBar, ordCom);
+            return new ResponseEntity<>("InfoExtraOrden eliminado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al eliminar el InfoExtraOrden", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
