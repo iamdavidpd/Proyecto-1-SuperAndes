@@ -28,8 +28,7 @@ public class RecepcionProductos {
     @JoinColumn(name = "id_OrdenCompra", referencedColumnName = "Id_OrdenCompra")
     private OrdenCompra id_OrdenCompra;
 
-    public RecepcionProductos(Long id, Date fechaRecepcion, Bodega id_Bodega, OrdenCompra id_OrdenCompra) {
-        this.id = id;
+    public RecepcionProductos(Date fechaRecepcion, Bodega id_Bodega, OrdenCompra id_OrdenCompra) {
         this.fechaRecepcion = fechaRecepcion;
         this.id_Bodega = id_Bodega;
         this.id_OrdenCompra = id_OrdenCompra;

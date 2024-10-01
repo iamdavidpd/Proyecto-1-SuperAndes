@@ -29,8 +29,7 @@ public class Venta {
     @JoinColumn(name = "id_Cliente", referencedColumnName = "Id_Cliente")
     private Cliente id_Cliente;
 
-    public Venta(Long id, Date fecha, Sucursal id_Sucursal, Cliente id_Cliente) {
-        this.id = id;
+    public Venta( Date fecha, Sucursal id_Sucursal, Cliente id_Cliente) {
         this.fecha = fecha;
         this.id_Sucursal = id_Sucursal;
         this.id_Cliente = id_Cliente;

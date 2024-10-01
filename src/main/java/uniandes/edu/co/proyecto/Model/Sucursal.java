@@ -25,9 +25,8 @@ public class Sucursal {
     @JoinColumn(name = "codigo_Ciudad", referencedColumnName = "codigo_Ciudad")
     private Ciudad codigo_Ciudad;
 
-    public Sucursal(Long id, String nombre, Double tamanio, String direccion, Integer telefono,
+    public Sucursal( String nombre, Double tamanio, String direccion, Integer telefono,
             Ciudad codigo_Ciudad) {
-        this.id = id;
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.direccion = direccion;
