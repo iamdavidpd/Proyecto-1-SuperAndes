@@ -1,6 +1,6 @@
 package uniandes.edu.co.proyecto.Repositories;
 
-import java.util.Collection;
+import java.util.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,6 +12,10 @@ import uniandes.edu.co.proyecto.Model.Bodega;
 import uniandes.edu.co.proyecto.Model.Sucursal;
 
 public interface BodegaRepository extends JpaRepository<Bodega, Long>{
+
+    public interface respuestaocupaciondeunabodega {
+        double getPROMEDIO_OCUPACION();
+    }
 
     @Query(value = "SELECT * FROM Bodega", nativeQuery = true)
     Collection<Bodega> getBodegas();
@@ -33,4 +37,24 @@ public interface BodegaRepository extends JpaRepository<Bodega, Long>{
     @Transactional
     @Query(value = "DELETE FROM Bodega WHERE Id = :id", nativeQuery = true)
     void deleteBodega(@Param("id") long id);
+
+
+    
+    @Query(value ="SELECT b.nombre AS bodega, \r\n"+ 
+        "(SUM(ieb.totalExistencia * ee.volumen_m3) / b.tamaño) * 100 AS porcentajeOcupacion \r\n" +
+       "FROM Bodega b \r\n" +
+       "INNER JOIN InfoExtraBodega ieb ON b.Id = ieb.Id_Bodega\r\n" +
+       "INNER JOIN Producto p ON ieb.codigobarras_producto = p.codigobarras \r\n" +
+       "INNER JOIN EspecificacionEmpacado ee ON p.Id_EspecificacionEmpacado = ee.Id \r\n" +
+       "WHERE p.codigoBarras IN :codigos AND b.sucursal.id = :sucursal \r\n" +
+       "GROUP BY b.nombre", nativeQuery = true)
+    Collection<Bodega> mostrarocupaciondeunabodega(@Param("sucursal") Long sucursal, @Param ("codigos") Collection<Long> codigos);
+    
+    @Query(value ="SELECT b.nombre AS bodega, \r\n"+ 
+       "FROM Bodega b \r\n"+
+       "INNER JOIN InfoExtraBodega ieb ON b.Id = ieb.Id_Bodega\r\n" +
+       "INNER JOIN Producto p ON ieb.codigobarras_producto = p.codigobarras \r\n" +
+       "INNER JOIN EspecificacionEmpacado ee ON p.Id_EspecificacionEmpacado = ee.Id \r\n" +
+       "GROUP BY b.nombre", nativeQuery = true)
+    Collection<respuestaocupaciondeunabodega> mostrarbodegas1();
 }

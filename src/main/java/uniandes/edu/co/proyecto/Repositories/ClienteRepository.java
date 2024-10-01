@@ -20,15 +20,15 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Cliente (Cedula, Nombre) VALUES (:cedula, :nombre)", nativeQuery = true)
-    void insertCiudad(@Param("cedula") Long ced, @Param("nombre") String nombre);
+    void insertCliente(@Param("cedula") Long ced, @Param("nombre") String nombre);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE Cliente SET Nombre = :nombre WHERE Cedula = :id", nativeQuery = true)
-    void updateCiudad(@Param("id") Long id, @Param("nombre") String nombre);
+    void updateCliente(@Param("id") Long id, @Param("nombre") String nombre);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Cliente WHERE Cedula = :id", nativeQuery = true)
-    void deleteCiudad(@Param("id") Long id);
+    void deleteCliente(@Param("id") Long id);
 }
