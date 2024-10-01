@@ -76,4 +76,14 @@ public class BodegaController {
             return new ResponseEntity<>("Error al eliminar el bodega", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Bodegas/{id}/edit/save")
+    public ResponseEntity<String> BodegaEditarGuardar(@PathVariable("id") long id, @RequestBody Bodega bodega) {
+        try {
+            bodegaRepository.updateBodega(id, bodega.getNombre(), bodega.getTamanio(), bodega.getSucursal());
+            return new ResponseEntity<>("Bodega actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el Bodega", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

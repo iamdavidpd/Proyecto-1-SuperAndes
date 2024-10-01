@@ -45,4 +45,14 @@ public class EspecificacionEmpacadoController {
             return new ResponseEntity<>("Error al eliminar el EspecificacionEmpacado", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/EspecificacionEmpacado/{id}/edit/save")
+    public ResponseEntity<String> EspecificacionEmpacadoEditarGuardar(@PathVariable("id") long id, @RequestBody EspecificacionEmpacado especificacionEmpacado) {
+        try {
+            especificacionEmpacadoRepository.updateEspecificacionEmpacado(id, especificacionEmpacado.getVolumen_CM3(), especificacionEmpacado.getPeso_Gr());
+            return new ResponseEntity<>("EspecificacionEmpacado actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el EspecificacionEmpacado", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

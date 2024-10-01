@@ -45,4 +45,14 @@ public class DetalleCostoBodegaController {
             return new ResponseEntity<>("Error al eliminar el DetalleCostoBodega", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/DetalleCostoBodega/{id}/edit/save")
+    public ResponseEntity<String> DetalleCostoBodegaEditarGuardar(@PathVariable("id") long id, @RequestBody DetalleCostoBodega detalleCostoBodega) {
+        try {
+            detalleCostoBodegaRepository.updateDetalleCostoBodega(id, detalleCostoBodega.getCostoUnitarioBodega(), detalleCostoBodega.getCantidadExistencias());
+            return new ResponseEntity<>("DetalleCostoBodega actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el DetalleCostoBodega", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

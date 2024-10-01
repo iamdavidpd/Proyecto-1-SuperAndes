@@ -47,4 +47,15 @@ public class ProveedorController {
             return new ResponseEntity<>("Error al eliminar el proveedor", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Proveedores/{id}/edit/save")
+    public ResponseEntity<String> ProveedorEditarGuardar(@PathVariable("id") long id, @RequestBody Proveedor proveedor) {
+        try {
+            proveedorRepository.updateProveedor(id, proveedor.getNombre(), proveedor.getDireccion(),
+                                        proveedor.getNombreContacto(), proveedor.getTelefonoContacto());
+            return new ResponseEntity<>("Proveedor actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el Proveedor", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

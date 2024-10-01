@@ -45,4 +45,14 @@ public class CiudadController {
             return new ResponseEntity<>("Error al eliminar el ciudad", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Ciudades/{id}/edit/save")
+    public ResponseEntity<String> CiudadEditarGuardar(@PathVariable("id") long id, @RequestBody Ciudad ciudad) {
+        try {
+            ciudadRepository.updateCiudad(id, ciudad.getNombre());
+            return new ResponseEntity<>("Ciudad actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el Ciudad", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

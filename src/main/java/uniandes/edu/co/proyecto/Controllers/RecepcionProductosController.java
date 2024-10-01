@@ -47,4 +47,15 @@ public class RecepcionProductosController {
             return new ResponseEntity<>("Error al eliminar el RecepcionProductos", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/RecepcionProductos/{id}/edit/save")
+    public ResponseEntity<String> RecepcionProductosEditarGuardar(@PathVariable("id") long id, @RequestBody RecepcionProductos recepcionProductos) {
+        try {
+            recepcionProductosRepository.updateRecepcionProductos(id, recepcionProductos.getFechaRecepcion(), recepcionProductos.getId_Bodega().getId(),
+                                                recepcionProductos.getId_OrdenCompra().getId());
+            return new ResponseEntity<>("RecepcionProductos actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el RecepcionProductos", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

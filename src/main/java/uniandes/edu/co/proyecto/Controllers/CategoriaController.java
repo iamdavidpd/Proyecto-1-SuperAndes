@@ -45,4 +45,14 @@ public class CategoriaController {
             return new ResponseEntity<>("Error al eliminar el Categoria", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Categorias/{id}/edit/save")
+    public ResponseEntity<String> CategoriaEditarGuardar(@PathVariable("id") long id, @RequestBody Categoria categoria) {
+        try {
+            categoriaRepository.updateCategoria(id, categoria.getNombre(), categoria.getDescripcion(), categoria.getCaracteristicasAlmacenamiento());
+            return new ResponseEntity<>("Categoria actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el Categoria", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

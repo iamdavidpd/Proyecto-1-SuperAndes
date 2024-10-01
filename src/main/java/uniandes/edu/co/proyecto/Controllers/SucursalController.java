@@ -46,4 +46,15 @@ public class SucursalController {
             return new ResponseEntity<>("Error al eliminar el Sucursal", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Sucursales/{id}/edit/save")
+    public ResponseEntity<String> SucursalesEditarGuardar(@PathVariable("id") long id, @RequestBody Sucursal sucursal) {
+        try {
+            sucursalRepository.updateSucursal(id, sucursal.getNombre(), sucursal.getTamanio(), sucursal.getDireccion(),
+                                            sucursal.getTelefono(), sucursal.getCodigo_Ciudad().getCodigo());
+            return new ResponseEntity<>("sucursal actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el sucursal", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -45,4 +45,14 @@ public class ClienteController {
             return new ResponseEntity<>("Error al eliminar el Cliente", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Clientes/{id}/edit/save")
+    public ResponseEntity<String> ClienteEditarGuardar(@PathVariable("id") long id, @RequestBody Cliente cliente) {
+        try {
+            clienteRepository.updateCliente(id, cliente.getNombre());
+            return new ResponseEntity<>("Cliente actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el Cliente", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

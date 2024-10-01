@@ -46,4 +46,14 @@ public class OrdenCompraController {
             return new ResponseEntity<>("Error al eliminar el ordenCompra", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/OrdenCompra/{id}/edit/save")
+    public ResponseEntity<String> OrdenCompraEditarGuardar(@PathVariable("id") long id, @RequestBody OrdenCompra ordenCompra) {
+        try {
+            ordenCompraRepository.updateOrdenCompra(id, ordenCompra.getFechaCreacion(), ordenCompra.getEstado(), ordenCompra.getFechaEntrega(), ordenCompra.getNit_proveedor().getNIT(), ordenCompra.getId_Sucursal().getId());
+            return new ResponseEntity<>("OrdenCompra actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el OrdenCompra", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -45,4 +45,14 @@ public class VentaController {
             return new ResponseEntity<>("Error al eliminar el Venta", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/Ventas/{id}/edit/save")
+    public ResponseEntity<String> VentaEditarGuardar(@PathVariable("id") long id, @RequestBody Venta venta) {
+        try {
+            ventaRepository.updateVenta(id, venta.getFecha(), venta.getId_Sucursal().getId(), venta.getId_Cliente().getCedula());
+            return new ResponseEntity<>("venta actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el venta", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
