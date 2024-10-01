@@ -1,177 +1,86 @@
+//PRUEBA DE UNICIDAD: LLAVES PRIMARIAS REPETIDAS
 
-Error que empieza en la l韓ea: 4 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (111, 'Sucursal AFC', 100, 'Calle 81', '123456711', 1)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282984) violada
+//Inserci贸n de una sucursal con PK 煤nica
+INSERT INTO Sucursal (Id, Nombre, Tama帽o, Direccion, telefono, Codigo_Ciudad) 
+VALUES (111, 'Sucursal AFC', 100, 'Calle 81', '123456711', 1);
 
-
-Error que empieza en la l韓ea: 8 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (111, 'Sucursal BEW', 150, 'Calle 2', '0987654321', 1)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282984) violada
+//Intentar insertar otra sucursal con la misma PK
+INSERT INTO Sucursal (Id, Nombre, Tama帽o, Direccion, telefono, Codigo_Ciudad) 
+VALUES (111, 'Sucursal BEW', 150, 'Calle 2', '0987654321', 1); //Falla porque ya existe un registro en la tabla sucursal con PK 111
 
 
-Error que empieza en la l韓ea: 15 del comando :
-INSERT INTO Ciudad (Codigo, Nombre) VALUES (11, 'Cali')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001308696) violada
+//PRUEBA DE INTEGRIDAD REFERENCIAL CON LLAVES FOR脕NEAS
 
+//Inserci贸n de una ciudad en la tabla Ciudad
+INSERT INTO Ciudad (Codigo, Nombre) VALUES (11, 'Cali');
 
-Error que empieza en la l韓ea: 18 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (222, 'Sucursal B', 150, 'Calle 2', '0987654321', 11)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282986) violada
+//Inserci贸n de una sucursal que referencia la ciudad existente
+INSERT INTO Sucursal (Id, Nombre, Tama帽o, Direccion, telefono, Codigo_Ciudad) 
+VALUES (222, 'Sucursal B', 150, 'Calle 2', '0987654321', 11); //Funciona porque la ciudad con c贸digo 11 existe dentro de la tabla Ciudad
 
+//Intentar insertar una sucursal que referencia una ciudad que no existe
+INSERT INTO Sucursal (Id, Nombre, Tama帽o, Direccion, telefono, Codigo_Ciudad) 
+VALUES (333, 'Sucursal C', 200, 'Calle 3', '1122334455', 9990); //Falla porque la ciudad con c贸digo 999 no existe dentro de la tabla Ciudad
 
-Error que empieza en la l韓ea: 22 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (333, 'Sucursal C', 200, 'Calle 3', '1122334455', 999)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282986) violada
+//PRUEBA DE INTEGRIDAD DE ACUERDO CON CON RESTRICCIONES DE CHEQUEO
 
+//Intentar insertar un producto perecedero con un c贸digo de barras duplicado
+INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida, FechaExpiracion, Codigo_Categoria, Id_EspecificacionEmpacado) 
+VALUES (101, 'Pesta帽ina', 25.00, 'Unidad', 1, 'unid', NULL, 1, 1);
 
-Error que empieza en la l韓ea: 28 del comando :
 INSERT INTO ProductoPerecedero (CodigoBarras_Producto, fechaVencimiento) 
-VALUES (101, TO_DATE('2024-12-31', 'YYYY-MM-DD'))
-Informe de error -
-ORA-02291: restricci髇 de integridad (ISIS2304A16202420.FK_P_CODIGOBARRAS_PRODUCTO) violada - clave principal no encontrada
+VALUES (101, TO_DATE('2024-12-31', 'YYYY-MM-DD'));
 
-
-Error que empieza en la l韓ea: 32 del comando :
+//Intentar insertar otro producto perecedero con el mismo c贸digo de barras
 INSERT INTO ProductoPerecedero (CodigoBarras_Producto, fechaVencimiento) 
-VALUES (101, TO_DATE('2025-01-01', 'YYYY-MM-DD'))
-Informe de error -
-ORA-02291: restricci髇 de integridad (ISIS2304A16202420.FK_P_CODIGOBARRAS_PRODUCTO) violada - clave principal no encontrada
+VALUES (101, TO_DATE('2025-01-01', 'YYYY-MM-DD')); //Falla porque ya existe un producto perecedero con en c贸digo de barras 101
 
+//PRUEBAS DE FUNCIONALIDAD DE LA APP: B脷SQUEDA DE PRODUCTOS
 
-Error que empieza en la l韓ea: 38 del comando :
+//Inserci贸n de varios productos
 INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida) 
-VALUES (191, 'Gancho', 15.00, 'Unidad', 1, 'unid')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001283135) violada
+VALUES (191, 'Gancho', 15.00, 'Unidad', 1, 'unid');
 
-
-Error que empieza en la l韓ea: 41 del comando :
 INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida) 
-VALUES (192, 'Tablero', 500.00, 'Unidad', 1, 'unid')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001283135) violada
+VALUES (192, 'Tablero', 500.00, 'Unidad', 1, 'unid');
 
+//B煤squeda por nombre de producto
+SELECT * 
+FROM Producto 
+WHERE Nombre LIKE '%Gancho%'; //Devuelve la informaci贸n del producto 'Gancho'
 
-CODIGOBARRAS NOMBRE                                             PRECIOUNITARIOVENTA PRESENTACION                                                                                         CANTIDADPRESENTACION UNIDA FECHAEXP CODIGO_CATEGORIA ID_ESPECIFICACIONEMPACADO
------------- -------------------------------------------------- ------------------- ---------------------------------------------------------------------------------------------------- -------------------- ----- -------- ---------------- -------------------------
-         191 Gancho                                                              15 Unidad                                                                                                                  1 unid                                                     
+//PRUEBAS DE FUNCIONALIDAD DE LA APP: ROLES DE USUARIO
 
-
-Error que empieza en la l韓ea: 52 del comando :
+//Intentar agregar un nuevo producto
 INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida) 
-VALUES (1033, 'Almohada', 300.00, 'Unidad', 1, 'unid')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001283135) violada
+VALUES (1033, 'Almohada', 300.00, 'Unidad', 1, 'unid'); //Se inserta de manera exitosa dentro de la tabla Producto
 
+//CASOS EXITOSOS Y DE FALLA
 
-1 fila insertadas.
-
-
-1 fila actualizadas.
-
-
-1 fila eliminado
-
-
-0 filas eliminado
-
-
-0 filas actualizadas.
-
-
-Error que empieza en la l韓ea: 4 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (111, 'Sucursal AFC', 100, 'Calle 81', '123456711', 1)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282984) violada
-
-
-Error que empieza en la l韓ea: 8 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (111, 'Sucursal BEW', 150, 'Calle 2', '0987654321', 1)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282984) violada
-
-
-Error que empieza en la l韓ea: 15 del comando :
-INSERT INTO Ciudad (Codigo, Nombre) VALUES (11, 'Cali')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001308696) violada
-
-
-Error que empieza en la l韓ea: 18 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (222, 'Sucursal B', 150, 'Calle 2', '0987654321', 11)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282986) violada
-
-
-Error que empieza en la l韓ea: 22 del comando :
-INSERT INTO Sucursal (Id, Nombre, Tama駉, Direccion, telefono, Codigo_Ciudad) 
-VALUES (333, 'Sucursal C', 200, 'Calle 3', '1122334455', 9990)
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001282986) violada
-
-
-1 fila insertadas.
-
-
-1 fila insertadas.
-
-
-Error que empieza en la l韓ea: 35 del comando :
-INSERT INTO ProductoPerecedero (CodigoBarras_Producto, fechaVencimiento) 
-VALUES (101, TO_DATE('2025-01-01', 'YYYY-MM-DD'))
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001309297) violada
-
-
-Error que empieza en la l韓ea: 41 del comando :
+//Inserci贸n de un nuevo producto correctamente
 INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida) 
-VALUES (191, 'Gancho', 15.00, 'Unidad', 1, 'unid')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001283135) violada
+VALUES (1044, 'Marcador', 20.00, 'Unidad', 1, 'unid'); //Se inserta exitosamente el producto "Marcador" en la tabla Producto
+
+//Actualizaci贸n de un producto existente
+UPDATE Producto 
+SET PrecioUnitarioVenta = 22.00 
+WHERE CodigoBarras = 1044; //Actualiza exitosamente el precio del marcador dentro de la tabla Producto
+
+//Eliminaci贸n de un producto
+DELETE FROM Producto 
+WHERE CodigoBarras = 1044; //Elimina exitosamente el marcador de la tabla Producto
+
+//Intentar eliminar un producto que no existe
+DELETE FROM Producto 
+WHERE CodigoBarras = 9999; //Falla porque no existe ning煤n producto con el c贸digo 9999
+
+//Intentar actualizar un producto que no existe
+UPDATE Producto 
+SET PrecioUnitarioVenta = 30.00
+WHERE CodigoBarras = 9999; //Falla porque no existe el producto con c贸digo de barras 9999, por lo tanto no se puede acualizar la info de este
 
 
-Error que empieza en la l韓ea: 44 del comando :
-INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida) 
-VALUES (192, 'Tablero', 500.00, 'Unidad', 1, 'unid')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001283135) violada
 
 
-CODIGOBARRAS NOMBRE                                             PRECIOUNITARIOVENTA PRESENTACION                                                                                         CANTIDADPRESENTACION UNIDA FECHAEXP CODIGO_CATEGORIA ID_ESPECIFICACIONEMPACADO
------------- -------------------------------------------------- ------------------- ---------------------------------------------------------------------------------------------------- -------------------- ----- -------- ---------------- -------------------------
-         191 Gancho                                                              15 Unidad                                                                                                                  1 unid                                                     
 
-
-Error que empieza en la l韓ea: 55 del comando :
-INSERT INTO Producto (CodigoBarras, Nombre, PrecioUnitarioVenta, Presentacion, CantidadPresentacion, UnidadMedida) 
-VALUES (1033, 'Almohada', 300.00, 'Unidad', 1, 'unid')
-Informe de error -
-ORA-00001: restricci髇 鷑ica (ISIS2304A16202420.SYS_C001283135) violada
-
-
-1 fila insertadas.
-
-
-1 fila actualizadas.
-
-
-1 fila eliminado
-
-
-0 filas eliminado
-
-
-0 filas actualizadas.
 
