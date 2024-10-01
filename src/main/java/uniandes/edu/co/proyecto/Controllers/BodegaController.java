@@ -1,8 +1,8 @@
 package uniandes.edu.co.proyecto.Controllers;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class BodegaController {
         return bodegaRepository.getBodegas();
     }
     @GetMapping("/bodega/consula")
-    public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) String sucursal,@RequestParam(required = false) Collection<String> codigos) {
+    public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) String sucursal,@RequestParam(required = false) List<Long> codigos) {
         try{
             Collection<respuestaocupaciondeunabodega>informacion = bodegaRepository.mostrarbodegas1();
             respuestaocupaciondeunabodega info = informacion.iterator().next();
@@ -43,12 +43,7 @@ public class BodegaController {
                     bodegas = bodegaRepository.getBodegas();
 
             } else{
-                    Collection<Long> codigos1=new ArrayList<>();
-                    long info =codigos.iterator().next()
-                    for (String s : codigos){
-                        codigos1.add(Long.parseLong(s)); 
-                    }
-                    bodegas= bodegaRepository.mostrarocupaciondeunabodega(Long.parseLong(sucursal), codigos1);
+                    bodegas= bodegaRepository.mostrarocupaciondeunabodega(Long.parseLong(sucursal), codigos);
             }
             response.put("Bodegas", bodegas);
 

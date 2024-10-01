@@ -48,7 +48,7 @@ public interface BodegaRepository extends JpaRepository<Bodega, Long>{
        "INNER JOIN EspecificacionEmpacado ee ON p.Id_EspecificacionEmpacado = ee.Id \r\n" +
        "WHERE p.codigoBarras IN :codigos AND b.sucursal.id = :sucursal \r\n" +
        "GROUP BY b.nombre", nativeQuery = true)
-    Collection<Bodega> mostrarocupaciondeunabodega(@Param("sucursal") Long sucursal, @Param ("codigos") Collection<Long> codigos);
+    Collection<Bodega> mostrarocupaciondeunabodega(@Param("sucursal") Long sucursal, @Param ("codigos") List<Long> codigos);
     
     @Query(value ="SELECT b.nombre AS bodega, \r\n"+ 
        "FROM Bodega b \r\n"+
