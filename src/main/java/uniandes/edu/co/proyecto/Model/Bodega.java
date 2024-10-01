@@ -19,13 +19,13 @@ public class Bodega {
     private Double tamanio;
 
     @ManyToOne
-    @JoinColumn(name = "id_sucursal", referencedColumnName = "Id_Sucursal")
-    private Sucursal sucursal;
+    @JoinColumn(name = "id_sucursal", referencedColumnName = "id")
+    private Sucursal id_sucursal;
 
     public Bodega(String nombre, Double tamanio, Sucursal sucursal) {
         this.nombre = nombre;
         this.tamanio = tamanio;
-        this.sucursal = sucursal;
+        this.id_sucursal = sucursal;
     }
 
     public Bodega() {;
@@ -56,10 +56,10 @@ public class Bodega {
     }
 
     public Sucursal getSucursal() {
-        return sucursal;
+        return id_sucursal;
     }
 
     public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+        this.id_sucursal = sucursal;
     }
 }
